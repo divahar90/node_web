@@ -1,0 +1,46 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header Edit Location
+
+                .col-lg-8
+                    .panel-body
+                        form(action='/editLocation', method='POST')
+                            fieldset
+                                label(for='block_number') Block Number
+                                .form-group
+                                    input.form-control(placeholder='Block Number', name='block_number', id='block_number', type='number',
+                                                    required=true, value='#{location.block_number}')
+
+                                label(for='unit_number') Unit Number
+                                .form-group
+                                        input.form-control(placeholder='Unit Number', name='unit_number', id='unit_number', type='text',
+                                        required=true, value='#{location.unit_number}')
+
+                                label(for='street') Street
+                                .form-group
+                                    input.form-control(placeholder='Street', id='street', name='street',
+                                    type='text',required=true,value='#{location.street}')
+
+                                label(for='state') State
+                                .form-group
+                                        input.form-control(placeholder='State', id='state', name='street',
+                                        type='text',required=true,value='#{location.state}')
+
+                                label(for='country') Country
+                                .form-group
+                                        input.form-control(placeholder='Country', id='country', name='country',
+                                        type='text',required=true,value='#{location.country}')
+
+                                label(for='postal_code') Postal Code
+                                .form-group
+                                        input.form-control(placeholder='Postal Code', id='postal_code', name='postal_code',
+                                        type='text',required=true,value='#{location.postal_code}')
+
+                                    input(type="hidden" name="id" value='#{location._id}')
+
+                                input.btn.btn-primary(type='submit', value='Edit')
+
+

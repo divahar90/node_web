@@ -1,0 +1,92 @@
+doctype html
+html
+    head
+
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title TUV Health
+        // Bootstrap Core CSS
+        link(href='/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+        // MetisMenu CSS
+        link(href='/vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
+        // Custom CSS
+        link(href='/dist/css/tuvhealth.css', rel='stylesheet')
+        // Custom Fonts
+        link(href='/vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+        link(href='/vendor/datatables-plugins/dataTables.bootstrap.css', rel='stylesheet')
+        link(href='/vendor/datatables-responsive/dataTables.responsive.css', rel='stylesheet')
+
+        // jQuery
+        script(src='/vendor/jquery/jquery.min.js')
+                // Bootstrap Core JavaScript
+        script(src='/vendor/bootstrap/js/bootstrap.min.js')
+                // MetisMenu Plugin JavaScript
+        script(src='/vendor/metisMenu/metisMenu.min.js')
+                // Custom Theme JavaScript
+        script(src='/dist/js/tuvhealth.js')
+
+        script(src='/vendor/datatables/js/jquery.dataTables.min.js')
+        script(src='/vendor/datatables-plugins/dataTables.bootstrap.min.js')
+        script(src='/vendor/datatables-responsive/dataTables.responsive.js')
+
+    body
+        #wrapper
+                // Navigation
+                nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+                    .navbar-header
+                        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                    img(src='/images/tuv_sud.png', style='width:75px;height:75px;float: left;')
+                    h1(align='center') TUV SUD Smart HealthCare Certification System
+
+                .navbar-default.sidebar(role='navigation')
+                          .sidebar-nav.navbar-collapse
+                               .ul#side-menu.nav
+                                    li
+                                      a(href='/')
+                                            |  Home
+
+                                    li
+                                      a(href='#')
+                                          |  Locations
+                                          span.fa.arrow
+                                      ul.nav.nav-second-level
+                                          li
+                                              a(href='/location/dashboard') Dashboard
+                                          li
+                                              a(href='/location/registerLocation') Register Location
+                                          li
+                                              a(href='/location/viewLocation') View Location
+
+                                    li
+                                        a(href='#')
+                                            |  Devices
+                                            span.fa.arrow
+                                        ul.nav.nav-second-level
+                                            li
+                                                a(href='/device/dashboard') Dashboard
+                                            li
+                                                a(href='/device/registerDevice') Register Device
+                                            li
+                                                a(href='/device/viewDevice') View Device
+
+                                    li
+                                       a(href='#')
+                                            |  Rules
+
+                                    li
+                                        a(href='#')
+                                             |  Configurations
+
+                block content
+
+
+
+
+
+
+

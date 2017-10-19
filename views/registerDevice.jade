@@ -1,0 +1,107 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header Register Device
+
+                .col-lg-8
+                    .panel-body
+                        form(action='/device/registerDevice', method='POST')
+                            fieldset
+
+                                label(for='postal_code') Postal Code
+                                .form-group
+                                        select.form-control(name="postal_code", id="postal_code",required=true)
+                                            option(value='') Select Postal Code
+                                            for postalCodeVal in postalCode
+                                                option(value='#{postalCodeVal}') #{postalCodeVal}
+
+                                label(for='unit_number') Unit Number
+                                .form-group
+                                    select.form-control(name="unit_number", id="unit_number",required=true)
+                                        option(value='') Select Unit Number
+
+
+                                label(for='device_id') Device ID
+                                .form-group
+                                    input.form-control(placeholder='Device ID', name='device_id', id="device_id",type='text',required=true)
+
+                                label(for='device_name') Device Name
+                                .form-group
+                                        input.form-control(placeholder='Device Name', name='device_name', id="device_name",type='text',required=true)
+
+                                label(for='device_type') Device Type
+                                .form-group
+                                     select.form-control(name="device_type", id="device_type")
+                                        option(value='') Select Device Type
+                                        for optionVal in options
+                                            option(value='#{optionVal}') #{optionVal}
+
+                                label(for='device_description') Device Description
+                                .form-group
+                                    input.form-control(placeholder='Device Description', name='device_description', id="device_description",type='text',required=true)
+
+                                input.btn.btn-primary(type='submit', value='Register')
+
+                .col-lg-4
+                    .panel.panel-default
+                        .panel-heading
+                            i.fa.fa-bell.fa-fw
+                            |  Notifications Panel
+                        // /.panel-heading
+                        .panel-body
+                            .list-group
+
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  Glucometer 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 11:32 AM
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  Weighing Scale 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 11:13 AM
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  BP Monitor 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 10:57 AM
+                            // /.list-group
+                            a.btn.btn-default.btn-block(href='#') View All Alerts
+                        // /.panel-body
+
+
+        script.
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+
+                $('select[name="postal_code"]').change(function () {
+                    $('#unit_number').contents().remove();
+                    $("#unit_number").append("<option value='' >Select Unit Number</option>");
+                    var $this = $(this);
+                    console.log($this.val());
+                    var data = {};
+                    data.postalCode = $this.val();
+
+                    $.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        url: 'http://localhost:8082/location/getUnitNbrs',
+
+                        success: function (data) {
+                            $('#unit_number').contents().remove();
+                            $("#unit_number").append("<option value='' >Select Unit Number</option>");
+                            for (var j = 0; j < data.length; j++) {
+                                console.log(data[j]);
+                                $("#unit_number").append
+                                                ("<option value='" + data[j] + "' >" + data[j] + "</option>");
+                            }
+                            }
+                        });
+                });
+            });

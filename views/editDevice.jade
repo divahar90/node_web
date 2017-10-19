@@ -1,0 +1,77 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header Edit Device
+
+                .col-lg-8
+                    .panel-body
+                        form(action='/editDevice', method='POST')
+                            fieldset
+
+                                label(for='postal_code') Postal Code
+                                .form-group
+                                    input.form-control(placeholder='Postal Code', name='postal_code', id="postal_code",
+                                    type='text',required=true, value='#{device.postal_code}')
+
+                                label(for='unit_number') Unit Number
+                                .form-group
+                                     input.form-control(placeholder='Unit Number', name='unit_number', id="unit_number",
+                                     type='text',required=true, value='#{device.unit_number}')
+
+                                label(for='device_id') Device ID
+                                .form-group
+                                    input.form-control(placeholder='Device ID', name='device_id', id="device_id",
+                                    type='text',required=true, value='#{device.device_id}')
+
+                                label(for='device_name') Device Name
+                                .form-group
+                                    input.form-control(placeholder='Device Name', name='device_name', id='device_name', type='text',
+                                                    required=true, value='#{device.device_name}')
+
+                                label(for='device_type') Device Type
+                                .form-group
+                                    select.form-control(name="device_type", id="device_type")
+                                        for optionVal in options
+                                            if optionVal == device.device_type
+                                                option(value='#{optionVal}', selected=true) #{optionVal}
+                                            else
+                                                option(value='#{optionVal}') #{optionVal}
+
+                                label(for='device_description') Device Description
+                                .form-group
+                                    input.form-control(placeholder='Device Description', id='device_description', name='device_description',
+                                    type='text',required=true,value='#{device.device_description}')
+
+                                    input(type="hidden" name="id" value='#{device._id}')
+
+                                input.btn.btn-primary(type='submit', value='Edit')
+
+                .col-lg-4
+                    .panel.panel-default
+                        .panel-heading
+                            i.fa.fa-bell.fa-fw
+                            |  Notifications Panel
+                        // /.panel-heading
+                        .panel-body
+                            .list-group
+
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  Glucometer 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 11:32 AM
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  Weighing Scale 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 11:13 AM
+                                a.list-group-item(href='#')
+                                    i.fa.fa-warning.fa-fw
+                                    |  BP Monitor 1 - Needs a check
+                                    span.pull-right.text-muted.small
+                                        em 10:57 AM
+                            // /.list-group
+                            a.btn.btn-default.btn-block(href='#') View All Alerts
+                        // /.panel-body

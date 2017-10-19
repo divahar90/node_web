@@ -1,0 +1,42 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header Register Location
+
+                .col-lg-8
+                    .panel-body
+                        form(action='/location/registerLocation', method='POST')
+                            fieldset
+                                label(for='block_number') Block Number
+                                .form-group
+                                    input.form-control(placeholder='Block Number', name='block_number', id='block_number', type='number',
+                                    required=true)
+
+                                label(for='unit_number') Unit Number
+                                .form-group
+                                    input.form-control(placeholder='Unit Number', name='unit_number', id='unit_number', type='text',
+                                    required=true)
+
+                                label(for='street') Street
+                                .form-group
+                                    input.form-control(placeholder='Street', id='street', name='street',
+                                    type='text',required=true)
+
+                                label(for='state') State
+                                .form-group
+                                    input.form-control(placeholder='State', id='state', name='state',
+                                    type='text',required=true)
+
+                                label(for='country') Country
+                                .form-group
+                                     input.form-control(placeholder='Country', id='country', name='country',
+                                     type='text',required=true)
+
+                                label(for='postal_code') Postal Code
+                                .form-group
+                                     input.form-control(placeholder='Postal Code', id='postal_code', name='postal_code',
+                                     type='text',required=true)
+
+                                input.btn.btn-primary(type='submit', value='Register')

@@ -1,0 +1,44 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header View Location
+
+                .row
+                    .col-lg-8
+                        .panel.panel-default
+                            .panel-heading
+                                | List of Registered Locations
+                            // /.panel-heading
+                            .panel-body
+                                table#dataTables-example.table.table-striped.table-bordered.table-hover(width='100%')
+                                    thead
+                                        tr
+                                            th Block Number
+                                            th Unit Number
+                                            th Street
+                                            th State
+                                            th Country
+                                            th Postal Code
+                                            th Actions
+                                    tbody
+                                        for location in locations
+                                            tr.odd.gradeX
+                                                td #{location.block_number}
+                                                td #{location.unit_number}
+                                                td #{location.street}
+                                                td #{location.state}
+                                                td #{location.country}
+                                                td #{location.postal_code}
+                                                td: a(href='/location/displayEditLoc?id=#{location._id}&blkNbr=#{location.block_number}&unitNbr=#{location.unit_number}&street=#{location.street}'+
+                                                    '&state=#{location.state}&country=#{location.country}&postalCode=#{location.postal_code}'): span.glyphicon.glyphicon-edit:&nbsp
+                                                        a(href='/location/deleteLocation?id=#{location._id}'): span.glyphicon.glyphicon-trash
+
+
+        script.
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });

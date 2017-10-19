@@ -1,0 +1,76 @@
+extends layout
+block content
+    #page-wrapper
+        .row
+            .col-lg-12
+                h2.page-header View Device
+
+                .row
+                    .col-lg-8
+                        .panel.panel-default
+                            .panel-heading
+                                | List of Registered Devices
+                            // /.panel-heading
+                            .panel-body
+                                table#dataTables-example.table.table-striped.table-bordered.table-hover(width='100%')
+                                    thead
+                                        tr
+                                            th Device ID
+                                            th Device Name
+                                            th Device Type
+                                            th Device Description
+                                            //th Device Status
+                                            th Postal Code
+                                            th Unit Number
+                                            th Actions
+                                    tbody
+                                        for device in devices
+                                            tr.odd.gradeX
+                                                td #{device.device_id}
+                                                td #{device.device_name}
+                                                td #{device.device_type}
+                                                td #{device.device_description}
+                                                //td #{device.device_status}
+                                                td #{device.postal_code}
+                                                td #{device.unit_number}
+                                                td: a(href='/device/displayEditDev?id=#{device.device_id}&name=#{device.device_name}'+
+                                                '&type=#{device.device_type}&desc=#{device.device_description}&postalCode=#{device.postal_code}&unitNbr=#{device.unit_number}'): span.glyphicon.glyphicon-edit:&nbsp
+                                                        a(href='/device/deleteDevice?id=#{device._id}'): span.glyphicon.glyphicon-trash
+
+
+
+
+                    .col-lg-4
+                        .panel.panel-default
+                            .panel-heading
+                                i.fa.fa-bell.fa-fw
+                                |  Notifications Panel
+                            // /.panel-heading
+                            .panel-body
+                                .list-group
+
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-warning.fa-fw
+                                        |  Glucometer 1 - Higher values recorded
+                                        span.pull-right.text-muted.small
+                                            em 11:32 AM
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-warning.fa-fw
+                                        |  Weighing Scale 1 - High BMI recorded
+                                        span.pull-right.text-muted.small
+                                            em 11:13 AM
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-warning.fa-fw
+                                        |  BP Monitor 1 - High Systolic pressure recorded
+                                        span.pull-right.text-muted.small
+                                            em 10:57 AM
+                                // /.list-group
+                                a.btn.btn-default.btn-block(href='#') View All Alerts
+                            // /.panel-body
+
+        script.
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
